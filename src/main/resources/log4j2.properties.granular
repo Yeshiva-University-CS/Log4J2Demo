@@ -1,0 +1,40 @@
+status = error
+dest = err
+name = PropertiesConfig
+# 
+property.filename = logs
+appenders = console, file
+# 
+appender.console.type = Console
+appender.console.name = STDOUT
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern = [%-5level] %d{HH:mm:ss.SSS} [%t] %c{1} %method - %msg%n
+# 
+appender.file.type = File
+appender.file.name = LOGFILE
+appender.file.fileName=${filename}/mycourse.log
+appender.file.layout.type=PatternLayout
+appender.file.layout.pattern=%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} %method - %msg%n
+############################################# Per package/class specifications ################################## 
+loggers=driver, \
+        driver_sibling, \
+        nestedonelevel, \
+        nestedtwolevels
+
+logger.driver.name=edu.yu.mycourse.Driver
+logger.driver.level=INFO
+logger.driver.appenderRef.LOGFILE.ref=LOGFILE
+#
+logger.driver_sibling.name=edu.yu.mycourse.DriverSibling
+logger.driver_sibling.level=DEBUG
+logger.driver_sibling.appenderRef.LOGFILE.ref=LOGFILE
+#
+logger.nestedonelevel.name=edu.yu.mycourse.nestedonelevel
+logger.nestedonelevel.level=DEBUG
+logger.nestedonelevel.appenderRef.LOGFILE.ref=LOGFILE
+#
+logger.nestedtwolevels.name=edu.yu.mycourse.nestedonelevel.nestedtwolevels
+logger.nestedtwolevels.level=OFF
+logger.nestedtwolevels.appenderRef.Console.ref=STDOUT
+logger.nestedtwolevels.appenderRef.LOGFILE.ref=LOGFILE
+#
